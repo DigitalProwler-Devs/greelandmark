@@ -1,0 +1,980 @@
+🚀 CLAUDE CODE PROMPT: Green Street Capital Website Build
+PROJECT OVERVIEW
+Build a complete, production-ready website for Green Street Capital, a Merchant Cash Advance (MCA) company headquartered in Miami, Florida. The website must exude luxury, innovation, and technological sophistication — NOT a generic fintech template. This should feel like a premium, elite financial brand that moves fast and looks like money.
+
+COMPANY INFORMATION
+DetailValueCompany NameGreen Street CapitalLegal Address480 NE 31st Street, Miami, FL 33173Website URLwww.greenstreetcapital.ioBusiness TypeMerchant Cash Advance (MCA) ProviderService AreaNationwide (all 50 states)What We DoWe purchase a portion of a business's future receivables in exchange for upfront capital. This is NOT a loan.
+Key Messaging Points
+
+MCA is NOT a loan — it's a purchase of future receivables
+No NMLS required
+Fast funding (24 hours from approval)
+High approval rates
+Simple application process
+No credit impact for rate checks (soft pull)
+
+
+🎨 DESIGN DIRECTION: Dark Luxury / Old Money Green / Silver Bullion
+Design Philosophy
+This website should feel like stepping into a private wealth office — dark, sophisticated, confident. Think: high-end fintech meets old money elegance with futuristic metallic accents. NOT corporate. NOT generic. NOT Bootstrap default.
+Color Palette
+ElementColor NameHex CodeUsagePrimary BackgroundDeep Forest Black#0A0F0DMain background, hero sectionsSecondary BackgroundMidnight Green#0D1F1ACards, sections, modalsAccent GreenOld Money Green#2A5A4BButtons, highlights, bordersLuxe GreenMuted Emerald#3D7A6AHover states, gradient endpointsMetallic SilverBullion Silver#C0C7C4Text accents, icons, bordersChampagne GoldSubtle Gold#D4AF37Premium accents only (use sparingly)Primary TextOff-White#F5F5F3Headlines, body textMuted TextSilver Gray#A8B0ACSecondary text, captionsError/AlertDeep Red#8B0000Form errors, warningsSuccessEmerald#2E8B57Success states, confirmations
+Gradient Specifications
+css/* Primary Button Gradient */
+background: linear-gradient(135deg, #2A5A4B 0%, #3D7A6A 50%, #2A5A4B 100%);
+
+/* Metallic Text Gradient */
+background: linear-gradient(135deg, #C0C7C4 0%, #F5F5F3 50%, #C0C7C4 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+/* Hero Background Gradient */
+background: linear-gradient(180deg, #0A0F0D 0%, #0D1F1A 50%, #0A0F0D 100%);
+
+/* Card Border Glow */
+border: 1px solid rgba(192, 199, 196, 0.2);
+box-shadow: 0 0 20px rgba(42, 90, 75, 0.3);
+
+/* Silver Bullion Shimmer Effect (CSS Animation) */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #C0C7C4 0%, #F5F5F3 50%, #C0C7C4 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 3s infinite linear;
+}
+Typography
+ElementFontSizeWeightStyleH1 (Hero)"Cabinet Grotesk" or "Satoshi"80-120px800 (Extra Bold)Metallic gradient, uppercase optionalH2 (Section)"Cabinet Grotesk" or "Satoshi"48-64px700 (Bold)Off-white or silverH3 (Subsection)"Cabinet Grotesk" or "Satoshi"32-40px600 (Semi-bold)Off-whiteBody"Inter" or "General Sans"16-18px400 (Regular)Off-white, 1.6 line-heightCaptions/Labels"Inter" or "General Sans"12-14px500 (Medium)Silver gray, uppercase, letter-spacing: 0.1emButtons"Inter" or "General Sans"14-16px600 (Semi-bold)Uppercase, letter-spacing: 0.05em
+Font Fallbacks: If custom fonts unavailable, use: "SF Pro Display", "Helvetica Neue", Arial, sans-serif
+Google Fonts Alternative: Satoshi isn't on Google Fonts, so use "Plus Jakarta Sans" or "Outfit" as alternatives.
+
+✨ ANIMATIONS & INTERACTIONS
+Global Animation Principles
+
+Smooth, elegant, never jarring
+Duration: 300-500ms for micro-interactions, 800-1200ms for reveals
+Easing: cubic-bezier(0.4, 0, 0.2, 1) for most animations
+Performance: Use transform and opacity only where possible
+
+Required Animations
+ElementAnimationTriggerHero HeadlineFade up + letter-by-letter revealPage loadHero SubtextFade up with 200ms delayPage loadCTA ButtonsSubtle pulse every 3s, scale 1.02 on hoverContinuous / HoverStat NumbersCount up from 0Scroll into viewCardsFade up + subtle 3D tilt on hoverScroll / HoverSection HeadingsSlide in from leftScroll into viewForm FieldsBorder glow on focusFocusNavigationShrink + blur background on scrollScrollPage TransitionsFade out/in with 300ms durationRoute changeLoading StatesSkeleton shimmer effectData loadingSuccess MessagesScale up + fade inForm submit
+Hover Effects
+css/* Button Hover */
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(42, 90, 75, 0.4);
+}
+
+/* Card Hover (3D Tilt) */
+.card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Link Hover */
+.link:hover {
+  color: #3D7A6A;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+Scroll Effects
+
+Smooth scroll behavior globally
+Parallax on hero background (subtle, 0.5 speed)
+Sticky navigation after 100px scroll
+Fade-in sections as they enter viewport (Intersection Observer)
+
+Background Effects
+
+Subtle animated grain/noise texture overlay on hero (opacity: 0.03)
+Optional: Abstract 3D mesh or particle animation in hero (green/silver tones)
+Gradient mesh background that subtly shifts on mouse movement
+
+
+📄 REQUIRED PAGES
+1. Homepage (/)
+Hero Section
+
+Headline: Large, bold, metallic gradient text
+
+Primary: "CAPITAL THAT MOVES AS FAST AS YOU DO"
+Alternative: "FUNDING WITHOUT THE FRICTION"
+
+
+Subheadline: "Merchant cash advances for ambitious businesses. No loans. No hassle. Funded in 24 hours."
+CTA Buttons:
+
+Primary: "CHECK YOUR RATE" → Links to /apply
+Secondary: "💬 CHAT ON WHATSAPP" → Opens WhatsApp
+
+
+Background: Dark gradient with subtle animated grain texture
+Visual Element: Abstract 3D mesh, particles, or geometric shapes in green/silver (NOT stock photos)
+
+Stats Bar Section
+Horizontal bar with animated counters:
+
+"$50M+ FUNDED" (or your real number)
+"1,000+ BUSINESSES SERVED" (or your real number)
+"24-HOUR FUNDING"
+"85%+ APPROVAL RATE"
+
+How It Works Section
+
+Headline: "THREE STEPS TO FUNDED"
+Steps:
+
+APPLY — "5-minute application. No paperwork headaches."
+GET APPROVED — "Instant decision. No credit impact to check your rate."
+GET FUNDED — "Money in your account within 24 hours."
+
+
+Visual: Each step in a card with icon, number, and description. Cards have glassmorphism effect.
+
+Quick Inquiry Widget Section
+
+Headline: "READY TO MOVE?"
+Subheadline: "Skip the wait. Start the conversation."
+Fields:
+
+Business Name (text)
+Funding Amount Needed (dropdown)
+Phone Number (tel)
+
+
+Buttons (side by side):
+
+"📧 EMAIL ME" (outlined, secondary)
+"💬 WHATSAPP NOW" (filled, primary, pulse animation)
+
+
+Style: Glassmorphism card, silver border glow
+
+Why Green Street Section
+
+Headline: "WHY BUSINESSES CHOOSE US"
+Cards (3-4):
+
+"SPEED" — "24-hour funding. No waiting."
+"SIMPLICITY" — "5-minute application. Minimal docs."
+"FLEXIBILITY" — "Revenue-based repayment. Breathe easy."
+"TRANSPARENCY" — "No hidden fees. No surprises."
+
+
+
+Trust & Credibility Section
+
+Headline: "TRUSTED BY BUSINESSES NATIONWIDE"
+Elements:
+
+BBB Accredited badge
+SBFA Member badge
+Trustpilot rating widget
+Security badges (SSL, Bank-Level Security)
+Partner logos (Plaid, DocuSign) in monochrome silver
+
+
+
+Testimonials Section
+
+Headline: "REAL BUSINESSES. REAL RESULTS."
+Format: Large quote typography, client name, business type, location
+Style: Carousel or staggered grid, photos in circular frames with green border glow
+
+Final CTA Section
+
+Headline: "YOUR NEXT CHAPTER STARTS HERE"
+Subheadline: "The capital you need. The speed you deserve."
+CTA: "GET STARTED NOW" → /apply
+
+Footer
+
+Logo with tagline: "Capital for the ambitious."
+Quick links: How It Works, About Us, FAQ, Contact, Apply
+Legal links: Terms of Service, Privacy Policy, Accessibility
+Contact info: Address, Email, Phone
+Social icons (if applicable)
+WhatsApp floating button
+Copyright: "© 2025 Green Street Capital. All rights reserved."
+Badges: SSL, Equal Opportunity Funder
+
+
+2. How It Works (/how-it-works)
+Hero
+
+Headline: "FUNDING, SIMPLIFIED"
+Subheadline: "From application to funded in three easy steps."
+
+Detailed Process Section
+Expand on the three steps with more detail:
+Step 1: APPLY (5 Minutes)
+
+Complete our simple online application
+Basic business and owner information
+No extensive paperwork required
+Soft credit check — no impact on your score
+Icon: Document/Form icon
+
+Step 2: GET APPROVED (Same Day)
+
+Our team reviews your application
+We verify your business revenue
+Receive your customized offer
+Clear terms, no hidden fees
+Icon: Checkmark/Shield icon
+
+Step 3: GET FUNDED (24 Hours)
+
+Accept your offer with e-signature
+Funds deposited directly to your account
+Start using capital immediately
+Repay through your daily/weekly receivables
+Icon: Money/Bank icon
+
+What You'll Need Section
+
+Headline: "WHAT TO HAVE READY"
+List:
+
+4 months of business bank statements
+Valid government-issued ID
+Proof of business ownership
+Basic business information (EIN, address, etc.)
+
+
+
+Eligibility Section
+
+Headline: "DO YOU QUALIFY?"
+Criteria:
+
+At least 6 months in business
+Minimum $10,000/month in revenue
+U.S.-based business
+Active business bank account
+
+
+CTA: "CHECK YOUR ELIGIBILITY" → /apply
+
+FAQ Snippet (3-4 questions)
+
+Link to full FAQ page
+
+CTA Section
+
+"READY TO GET STARTED?"
+Button: "APPLY NOW"
+
+
+3. Rates & Terms (/rates)
+Hero
+
+Headline: "TRANSPARENT PRICING"
+Subheadline: "No hidden fees. No surprises. Know exactly what you're getting."
+
+Important Notice Box
+IMPORTANT: Green Street Capital provides merchant cash advances, 
+NOT loans. We purchase a portion of your future receivables at a 
+discount. There is no interest rate or fixed repayment term.
+Pricing Overview
+FactorRangeFunding Amount$5,000 — $500,000Factor Rate1.10 — 1.50Purchased AmountFunding × Factor RateRemittance5% — 20% of daily/weekly receivablesTermEstimated 3-18 months (varies by revenue)
+How Factor Rates Work Section
+
+Explain factor rate vs. interest rate
+Example calculation:
+
+Funding: $50,000
+Factor Rate: 1.25
+Purchased Amount: $62,500
+You receive $50,000, you remit $62,500 over time
+
+
+
+Fees Section
+
+Origination Fee: Varies (typically included in factor rate)
+Late Fees: None (repayment is automatic)
+Prepayment Penalty: None
+Application Fee: $0
+Hidden Fees: None
+
+State-Specific Disclosures Notice
+Certain states require additional disclosures. If you are located 
+in California, Virginia, Utah, or New York, you will receive 
+state-mandated disclosure documents as part of your offer.
+CTA
+
+"SEE YOUR PERSONALIZED RATE"
+Button: "CHECK YOUR RATE" → /apply
+
+
+4. About Us (/about)
+Hero
+
+Headline: "BUILT FOR BUSINESSES THAT MOVE"
+Subheadline: "We're not a bank. We're not a lender. We're your capital partner."
+
+Our Story Section
+
+Founded in Miami, FL
+Mission: To provide fast, flexible capital to businesses that traditional lenders overlook
+We understand that businesses need speed, not bureaucracy
+Emphasize: Real people, real decisions, real fast
+
+Mission & Vision Section
+Mission:
+"To empower ambitious businesses with fast, flexible capital — without the friction of traditional lending."
+Vision:
+"A world where business owners never miss an opportunity because of slow, outdated funding processes."
+Our Values
+
+SPEED — Time is money. We move fast.
+TRANSPARENCY — No games. No hidden fees. Clear terms.
+PARTNERSHIP — Your success is our success.
+INNOVATION — Modern problems require modern solutions.
+
+The Team (Optional)
+
+Placeholder for team photos/bios
+Or: "Our team of funding specialists has helped over 1,000 businesses secure the capital they need."
+
+Why We're Different Section
+Traditional LendersGreen Street CapitalWeeks of waiting24-hour fundingMountains of paperwork5-minute applicationCredit score obsessedRevenue-focusedRigid repayment termsFlexible, revenue-basedHidden feesTransparent pricing
+Trust Badges
+
+BBB, SBFA, Trustpilot, etc.
+
+CTA
+
+"READY TO WORK WITH US?"
+Button: "GET STARTED"
+
+
+5. FAQ (/faq)
+Hero
+
+Headline: "QUESTIONS? WE'VE GOT ANSWERS."
+Subheadline: "Everything you need to know about merchant cash advances."
+
+FAQ Categories (Accordion Style)
+GENERAL
+
+What is a merchant cash advance?
+How is an MCA different from a loan?
+Is Green Street Capital a direct funder?
+
+ELIGIBILITY
+
+What are the minimum requirements?
+Do I need good credit?
+What industries do you work with?
+Can I apply if I have an existing MCA?
+
+APPLICATION PROCESS
+
+How long does the application take?
+What documents do I need?
+Will applying affect my credit score?
+How quickly will I get a decision?
+
+FUNDING & REPAYMENT
+
+How much can I receive?
+How soon will I be funded?
+How does repayment work?
+What if my revenue fluctuates?
+Can I pay off early?
+
+FEES & COSTS
+
+What is a factor rate?
+Are there any fees?
+Are there prepayment penalties?
+
+SUPPORT
+
+How can I contact you?
+What are your hours?
+Can I speak to someone on WhatsApp?
+
+Still Have Questions CTA
+
+"CAN'T FIND YOUR ANSWER?"
+"💬 Chat with us on WhatsApp" + "📧 Email us"
+
+
+6. Contact / Connect (/connect)
+This is the dedicated contact page with the dual Email + WhatsApp system.
+Hero
+
+Headline: "EMAIL IS OLD NEWS. WE SPEED-RUN THE PROCESS THE SAVVY WAY."
+Subheadline: "While other lenders leave you waiting in inbox purgatory, we're already talking terms. Connect with a funding specialist instantly via WhatsApp — or go traditional if that's your style."
+
+Response Time Comparison Section
+
+Headline: "WHY WHATSAPP? BECAUSE YOUR TIME IS MONEY."
+
+Metric📧 EMAIL💬 WHATSAPPAverage Response4-24 hoursUnder 5 minutesBack & ForthDaysReal-timeDocument SharingAttachmentsSnap & sendAvailabilityBusiness hours8AM-10PM ETVibeFormal, slowFast, direct, human
+Badge: "⚡ AVERAGE WHATSAPP RESPONSE: 3 MINUTES"
+Full Inquiry Form Section
+
+Headline: "LET'S GET YOU FUNDED"
+
+Form Fields:
+Section 1: Your Information
+
+Full Name (required)
+Email Address (required)
+Phone Number (required)
+Best Time to Contact (dropdown: Morning / Afternoon / Evening / ASAP)
+
+Section 2: Business Information
+
+Business Name (required)
+Industry (dropdown)
+Time in Business (dropdown: Less than 6 months / 6-12 months / 1-2 years / 2-5 years / 5+ years)
+Monthly Revenue (dropdown: $0-$10K / $10K-$25K / $25K-$50K / $50K-$100K / $100K-$250K / $250K+)
+State (dropdown: all 50 states)
+
+Section 3: Funding Request
+
+Amount Needed (dropdown: $5K-$10K / $10K-$25K / $25K-$50K / $50K-$100K / $100K-$250K / $250K+)
+Purpose of Funding (dropdown: Inventory / Equipment / Expansion / Payroll / Marketing / Cash Flow / Other)
+How Soon Do You Need Funding? (dropdown: Immediately / Within 1 week / Within 2 weeks / Within 1 month / Just exploring)
+Additional Details (textarea, optional)
+
+Section 4: How Would You Like to Hear From Us?
+
+Radio toggle: 📧 Email / 💬 WhatsApp (Fastest)
+
+Submit Buttons (side by side):
+
+"📧 SUBMIT VIA EMAIL" — Outlined, silver border
+"💬 SEND TO WHATSAPP" — Filled, green gradient, pulse animation
+
+WhatsApp Button Behavior:
+Opens WhatsApp with pre-filled message:
+Hi Green Street Capital 👋
+
+I just submitted an inquiry on your website. Here are my details:
+
+📍 Business: [Business Name]
+💰 Amount Needed: [Amount]
+📞 Phone: [Phone]
+📧 Email: [Email]
+
+Looking forward to chatting!
+Sidebar (Sticky on Desktop)
+
+WhatsApp QR Code
+"Scan to chat instantly"
+Phone number with click-to-chat link
+Response time badge
+
+What Happens Next Section
+Timeline showing process after submission (both tracks)
+Trust Badges Below Form
+
+"🔒 Your information is encrypted and secure"
+"📵 We never spam or share your number"
+"🇺🇸 Real humans in Miami, FL — not bots"
+
+Contact Information Section
+
+Address: 480 NE 31st Street, Miami, FL 33173
+Email: [INSERT EMAIL]
+Phone: [INSERT PHONE]
+WhatsApp: [INSERT WHATSAPP NUMBER]
+Hours: Monday-Friday 8AM-10PM ET, Saturday 9AM-5PM ET
+
+
+7. Apply / Check Your Rate (/apply)
+Hero
+
+Headline: "LET'S GET YOU FUNDED"
+Subheadline: "5 minutes. No credit impact. See what you qualify for."
+
+Trust Bar
+
+"🔒 Secure & Encrypted" | "📊 No Credit Impact" | "⚡ Instant Decision"
+
+Multi-Step Application Form
+Use a progress stepper with 3-4 steps. Each step on its own card with smooth transitions.
+Step 1: Business Information
+
+Business Legal Name
+DBA (if applicable)
+Business Address (Street, City, State, Zip)
+Business Phone
+Industry
+Years in Business
+Business Entity Type (Sole Prop, LLC, Corp, etc.)
+EIN (optional at this stage)
+
+Step 2: Owner Information
+
+Owner Full Name
+Owner Email
+Owner Phone
+Ownership Percentage
+Date of Birth
+Home Address
+SSN (for soft credit check — explain it won't impact score)
+
+Step 3: Financial Information
+
+Monthly Revenue (average)
+Desired Funding Amount
+Purpose of Funds
+Current Outstanding MCAs/Loans (yes/no, if yes how much)
+Bank Name
+
+Step 4: Review & Submit
+
+Summary of all entered information
+Checkboxes:
+
+"I agree to the Terms of Service and Privacy Policy"
+"I consent to electronic signatures (E-Sign Consent)"
+"I authorize a soft credit inquiry"
+
+
+Submit button: "GET MY RATE"
+
+Post-Submit: Confirmation Screen
+
+Headline: "YOU'RE IN! 🎉"
+Message: "We've received your application. A funding specialist will be in touch within [X hours]."
+WhatsApp CTA: "Want faster updates? 💬 Chat with us on WhatsApp"
+
+Sidebar (Desktop)
+
+"Need help? Questions?"
+WhatsApp chat button
+Phone number
+"Average funding time: 24 hours"
+
+
+8. Legal Pages
+Terms of Service (/terms)
+
+Full text from the document we created
+Clean, readable formatting
+Sticky table of contents on desktop
+
+Privacy Policy (/privacy)
+
+Full text from the document we created
+Clean, readable formatting
+Sticky table of contents on desktop
+
+Accessibility Statement (/accessibility)
+
+Full text from the document we created
+
+
+🛡️ TRUST BADGES & COPY
+Security Badges
+1. SSL SECURED
+SSL SECURED
+256-Bit Encryption
+Icon: Lock/Shield
+2. BANK-LEVEL SECURITY
+BANK-LEVEL SECURITY
+Your data is protected with institutional-grade encryption
+Icon: Bank/Vault
+3. DATA PROTECTION
+YOUR DATA, PROTECTED
+We never sell your information
+Icon: Shield with checkmark
+Speed & Service Badges
+4. FAST FUNDING
+FUNDED IN 24 HOURS
+From approval to your account
+Icon: Lightning bolt
+5. SIMPLE APPLICATION
+5-MINUTE APPLICATION
+No paperwork. No hassle.
+Icon: Clock/Document
+6. APPROVAL RATE
+85%+ APPROVAL RATE
+We find a way to say yes
+Icon: Checkmark/Thumbs up
+7. NO CREDIT IMPACT
+NO CREDIT IMPACT
+Check your rate without affecting your score
+Icon: Credit card with shield
+Industry Badges
+8. BBB ACCREDITED
+BBB ACCREDITED BUSINESS
+A+ Rating
+Note: Use official BBB badge once accredited
+9. SBFA MEMBER
+SBFA MEMBER
+Small Business Finance Association
+Note: Use official badge once member
+Review Badges
+10. TRUSTPILOT
+TRUSTPILOT
+★★★★★ 4.8/5
+Based on 200+ reviews
+Note: Use Trustpilot embed widget
+11. CUSTOMER COUNT
+TRUSTED BY 1,000+ BUSINESSES
+Across all 50 states
+Partner Badges
+12. PLAID
+POWERED BY PLAID
+Secure bank verification
+Note: Use Plaid co-branding assets
+13. DOCUSIGN
+SECURED BY DOCUSIGN
+Industry-leading e-signature technology
+Compliance Badges
+14. EQUAL OPPORTUNITY
+EQUAL OPPORTUNITY FUNDER
+We evaluate all businesses fairly
+Icon: Balance scale
+15. CCPA COMPLIANT
+CCPA COMPLIANT
+California Consumer Privacy Act
+Badge Placement Map
+LocationBadgesHomepage HeroFast Funding, No Credit Impact, Approval RateHomepage Trust SectionBBB, SBFA, Trustpilot, Customer Count, Plaid, DocuSignHomepage FooterSSL, Bank-Level Security, Equal Opportunity, CCPAHow It WorksSimple Application, Fast Funding, No Credit ImpactApplication PageSSL, Bank-Level Security, Plaid, No Credit Impact, Data ProtectionAbout UsBBB, SBFA, Customer CountFooter (all pages)SSL, Equal Opportunity, BBB
+Badge Design Style
+
+Shape: Rounded rectangles or shields
+Background: Transparent or dark green (#0D1F1A)
+Border: 1px silver gradient with subtle glow
+Icons: Minimal line icons in silver (#C0C7C4)
+Text: Small caps, tight letter-spacing
+Hover: Subtle metallic sheen animation
+
+
+📱 WHATSAPP INTEGRATION
+WhatsApp Business Details
+
+Number: [TO BE PROVIDED]
+Display Name: Green Street Capital
+Profile Photo: Logo on dark background
+Status: "Funding specialists available 8AM-10PM ET"
+
+Click-to-Chat URL Format
+https://wa.me/1XXXXXXXXXX?text=Hi%20Green%20Street%20Capital%2C%20I%27m%20interested%20in%20funding%20for%20my%20business.
+Pre-Filled Message (From Form)
+Hi Green Street Capital 👋
+
+I just submitted an inquiry on your website. Here are my details:
+
+📍 Business: [Business Name]
+💰 Amount Needed: [Amount]
+📞 Phone: [Phone]
+📧 Email: [Email]
+
+Looking forward to chatting!
+WhatsApp Button Placements
+LocationStyleHomepage HeroLarge button next to main CTAHomepage WidgetPrimary action buttonSticky Footer (Mobile)Fixed bottom barFloating Button (Desktop)Bottom-right corner with pulseContact PagePrimary form actionApplication FlowSupport sidebarFAQ PageAfter FAQ section
+WhatsApp Button Styling
+css.whatsapp-btn {
+  background: linear-gradient(135deg, #2A5A4B 0%, #3D7A6A 100%);
+  color: #F5F5F3;
+  border: 1px solid rgba(192, 199, 196, 0.3);
+  border-radius: 8px;
+  padding: 16px 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(42, 90, 75, 0.4);
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(42, 90, 75, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(42, 90, 75, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(42, 90, 75, 0); }
+}
+
+.whatsapp-btn-pulse {
+  animation: pulse 2s infinite;
+}
+
+🧩 COMPONENTS TO BUILD
+Navigation
+
+Logo (left)
+Links: How It Works, Rates, About, FAQ, Contact
+CTA Button: "Apply Now" (right)
+Mobile: Hamburger menu with slide-out drawer
+Behavior: Shrinks and adds blur backdrop on scroll
+
+Footer
+
+Full-width dark section
+Logo with tagline
+Quick links (4 columns on desktop)
+Legal links
+Contact info
+Social icons (optional)
+Trust badges row
+WhatsApp floating button
+Copyright
+
+Cards
+
+Glassmorphism effect
+Dark green background with blur
+Silver border (1px) with subtle glow
+Rounded corners (12-16px)
+3D tilt on hover
+
+Buttons
+
+Primary: Green gradient, white text, scale + glow on hover
+Secondary: Transparent, silver border, fill on hover
+WhatsApp: Green gradient with pulse animation
+
+Form Fields
+
+Dark background input
+Silver border, green glow on focus
+Placeholder text in silver gray
+Error state: red border + error message below
+Success state: green checkmark
+
+Progress Stepper (Application)
+
+Horizontal steps with numbers
+Active step: green glow
+Completed step: green fill with checkmark
+Future step: silver outline
+
+Accordion (FAQ)
+
+Click to expand/collapse
+Smooth animation
+Plus/minus icon or chevron
+Only one open at a time
+
+Testimonial Card
+
+Large quote marks (decorative)
+Quote text in larger font
+Client name, business type, location
+Star rating (optional)
+Circular photo with green border glow
+
+Stats Counter
+
+Large number with count-up animation
+Label below in silver
+Triggered on scroll into view
+
+Modal
+
+Centered overlay
+Dark backdrop with blur
+Glassmorphism card
+Close button (X) top right
+
+Toast Notifications
+
+Slide in from top or bottom
+Success (green), Error (red), Info (silver)
+Auto-dismiss after 5 seconds
+Manual dismiss option
+
+
+📱 RESPONSIVE DESIGN
+Breakpoints
+
+Mobile: 0 - 767px
+Tablet: 768px - 1023px
+Desktop: 1024px - 1439px
+Large Desktop: 1440px+
+
+Mobile Considerations
+
+Hamburger menu
+Stack columns vertically
+Reduce font sizes proportionally
+Full-width buttons
+Sticky WhatsApp button at bottom
+Touch-friendly tap targets (min 44px)
+No hover effects (use active states)
+
+Tablet Considerations
+
+2-column layouts where appropriate
+Slightly reduced font sizes
+Condensed navigation
+
+
+🛠️ TECH STACK RECOMMENDATIONS
+Framework
+
+Next.js 14 (App Router) — For SEO, performance, and server components
+Or React with Vite if simpler setup preferred
+
+Styling
+
+Tailwind CSS — For rapid development and consistency
+Custom CSS for complex animations and gradients
+
+Animation Libraries
+
+Framer Motion — For page transitions and complex animations
+GSAP — For scroll-triggered animations (optional, heavier)
+Or vanilla CSS animations for simpler needs
+
+Form Handling
+
+React Hook Form — For form state management
+Zod — For validation
+
+Icons
+
+Lucide React — Clean, minimal line icons
+Or Heroicons
+
+Fonts
+
+Self-hosted or Google Fonts
+Recommended: "Plus Jakarta Sans" or "Outfit" (Google Fonts alternatives to Satoshi)
+
+Analytics
+
+Google Analytics 4
+Hotjar or Microsoft Clarity (heatmaps)
+
+Deployment
+
+Vercel — Optimized for Next.js
+Or Netlify
+
+
+🔒 SECURITY REQUIREMENTS
+
+HTTPS everywhere (SSL certificate)
+Form data encrypted in transit
+No sensitive data in URL parameters
+Rate limiting on form submissions
+CAPTCHA or honeypot for spam prevention
+Secure storage of any collected data
+CCPA/Privacy compliance (opt-out mechanism)
+
+
+📊 SEO REQUIREMENTS
+Meta Tags (Per Page)
+
+Title tag (unique, <60 chars)
+Meta description (unique, <160 chars)
+Open Graph tags (title, description, image)
+Twitter Card tags
+
+Technical SEO
+
+Semantic HTML (proper heading hierarchy)
+Alt text on all images
+XML sitemap
+Robots.txt
+Schema markup (Organization, FAQPage, etc.)
+Fast page load (<3s)
+Mobile-friendly
+
+URL Structure
+
+Clean, readable URLs
+Lowercase, hyphens (not underscores)
+Example: /how-it-works, /about, /faq
+
+
+📋 DELIVERABLES CHECKLIST
+Pages
+
+ Homepage
+ How It Works
+ Rates & Terms
+ About Us
+ FAQ
+ Contact / Connect
+ Apply (multi-step form)
+ Terms of Service
+ Privacy Policy
+ Accessibility Statement
+ 404 Page (custom, on-brand)
+
+Components
+
+ Navigation (desktop + mobile)
+ Footer
+ Hero section
+ Stats bar with counters
+ Card component (glassmorphism)
+ Button components (primary, secondary, WhatsApp)
+ Form fields (input, select, textarea, checkbox, radio)
+ Progress stepper
+ Accordion
+ Testimonial card
+ Trust badge component
+ Modal
+ Toast notifications
+ Loading/skeleton states
+
+Integrations
+
+ WhatsApp click-to-chat
+ Form submission (email or backend)
+ Google Analytics
+ Trustpilot embed (placeholder)
+
+Assets
+
+ Favicon (animated optional)
+ Logo (SVG)
+ OG image for social sharing
+ Custom badge SVGs
+ Icon set
+
+
+🚀 FINAL NOTES
+Tone of Voice
+
+Confident, not arrogant
+Fast, not rushed
+Professional, not stuffy
+Human, not robotic
+Direct, not aggressive
+
+Brand Personality
+
+The smart choice
+The fast lane
+Old money sophistication with new money speed
+Tech-forward but trustworthy
+Premium without being pretentious
+
+What This Site Should Feel Like
+
+Walking into a private wealth advisor's office — dark, sleek, expensive
+But with the speed of a Silicon Valley startup
+"These people are serious, and they move fast"
+"I trust them with my business"
+
+
+BEGIN BUILD
+Start with the homepage, establishing the design system (colors, typography, components) first. Then build out the remaining pages using the established patterns.
+Prioritize:
+
+Visual impact (hero, animations)
+Trust elements (badges, testimonials)
+Conversion paths (CTAs, forms, WhatsApp)
+Content clarity (copy, hierarchy)
+Performance (speed, SEO)
+
+Let's build something that makes other MCA websites look like they're still using dial-up. 🚀
