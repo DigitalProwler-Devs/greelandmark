@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import heroVideo from "@assets/horses_1769718319951.mp4";
 import { 
   MessageCircle, 
   Zap, 
@@ -91,8 +92,24 @@ const testimonials = [
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Dark with animated background */}
+      {/* Hero Section - Video background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        </div>
+        
+        {/* Animated elements overlay */}
         <AnimatedBackground variant="hero" />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
