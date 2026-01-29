@@ -16,14 +16,14 @@ export default {
       },
       colors: {
         "green-street": {
-          "forest": "#0A0F0D",
-          "midnight": "#0D1F1A",
-          "money": "#2A5A4B",
-          "luxe": "#3D7A6A",
-          "silver": "#C0C7C4",
-          "gold": "#D4AF37",
-          "offwhite": "#F5F5F3",
-          "muted": "#8A9A96",
+          "forest": "#080C0A",
+          "midnight": "#142A24",
+          "money": "#2E8B6E",
+          "luxe": "#3DA685",
+          "silver": "#D0D7D4",
+          "gold": "#E5C04A",
+          "offwhite": "#FAFAF8",
+          "muted": "#9BABA7",
         },
         // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",

@@ -15,57 +15,57 @@
   --elevate-2: rgba(255,255,255, .09);
 
   /* Deep Forest Black - Primary Background */
-  --background: 150 25% 5%;
+  --background: 150 20% 4%;
 
   /* Off-White Text */
-  --foreground: 60 5% 96%;
+  --foreground: 60 10% 98%;
 
-  /* Subtle border */
-  --border: 160 15% 15%;
+  /* Stronger border for visibility */
+  --border: 160 25% 22%;
 
-  /* Midnight Green - Cards */
-  --card: 160 30% 8%;
-  --card-foreground: 60 5% 96%;
-  --card-border: 160 20% 18%;
+  /* Midnight Green - Cards with more contrast */
+  --card: 160 35% 12%;
+  --card-foreground: 60 10% 98%;
+  --card-border: 160 30% 28%;
 
   /* Sidebar - Slightly darker */
-  --sidebar: 150 25% 4%;
-  --sidebar-foreground: 60 5% 96%;
-  --sidebar-border: 160 15% 12%;
-  --sidebar-primary: 160 35% 35%;
-  --sidebar-primary-foreground: 60 5% 96%;
-  --sidebar-accent: 160 30% 25%;
-  --sidebar-accent-foreground: 60 5% 96%;
-  --sidebar-ring: 160 35% 35%;
+  --sidebar: 150 20% 3%;
+  --sidebar-foreground: 60 10% 98%;
+  --sidebar-border: 160 20% 18%;
+  --sidebar-primary: 160 45% 40%;
+  --sidebar-primary-foreground: 60 10% 98%;
+  --sidebar-accent: 160 35% 30%;
+  --sidebar-accent-foreground: 60 10% 98%;
+  --sidebar-ring: 160 45% 40%;
 
   /* Popover */
-  --popover: 160 30% 7%;
-  --popover-foreground: 60 5% 96%;
-  --popover-border: 160 20% 15%;
+  --popover: 160 35% 10%;
+  --popover-foreground: 60 10% 98%;
+  --popover-border: 160 25% 22%;
 
-  /* Old Money Green - Primary */
-  --primary: 160 35% 30%;
-  --primary-foreground: 60 5% 96%;
+  /* Old Money Green - Primary (brighter for buttons) */
+  --primary: 160 50% 38%;
+  --primary-foreground: 150 20% 4%;
 
-  /* Secondary - Muted */
-  --secondary: 160 20% 12%;
-  --secondary-foreground: 60 5% 90%;
+  /* Secondary - More visible */
+  --secondary: 160 30% 18%;
+  --secondary-foreground: 60 10% 95%;
 
   /* Muted */
-  --muted: 160 15% 12%;
-  --muted-foreground: 160 10% 60%;
+  --muted: 160 20% 16%;
+  --muted-foreground: 160 15% 65%;
 
-  /* Luxe Green - Accent */
-  --accent: 160 33% 38%;
-  --accent-foreground: 60 5% 96%;
+  /* Luxe Green - Accent (brighter) */
+  --accent: 160 50% 45%;
+  --accent-foreground: 150 20% 4%;
 
   /* Destructive */
-  --destructive: 0 62% 50%;
-  --destructive-foreground: 60 5% 96%;
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 60 10% 98%;
 
-  /* Input & Ring */
-  --input: 160 20% 20%;
-  --ring: 160 35% 35%;
+  /* Input & Ring - more visible */
+  --input: 160 25% 25%;
+  --ring: 160 50% 45%;
 
   /* Charts */
   --chart-1: 160 35% 35%;
@@ -114,35 +114,35 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  --background: 150 25% 5%;
-  --foreground: 60 5% 96%;
-  --border: 160 15% 15%;
-  --card: 160 30% 8%;
-  --card-foreground: 60 5% 96%;
-  --card-border: 160 20% 18%;
-  --sidebar: 150 25% 4%;
-  --sidebar-foreground: 60 5% 96%;
-  --sidebar-border: 160 15% 12%;
-  --sidebar-primary: 160 35% 35%;
-  --sidebar-primary-foreground: 60 5% 96%;
-  --sidebar-accent: 160 30% 25%;
-  --sidebar-accent-foreground: 60 5% 96%;
-  --sidebar-ring: 160 35% 35%;
-  --popover: 160 30% 7%;
-  --popover-foreground: 60 5% 96%;
-  --popover-border: 160 20% 15%;
-  --primary: 160 35% 30%;
-  --primary-foreground: 60 5% 96%;
-  --secondary: 160 20% 12%;
-  --secondary-foreground: 60 5% 90%;
-  --muted: 160 15% 12%;
-  --muted-foreground: 160 10% 60%;
-  --accent: 160 33% 38%;
-  --accent-foreground: 60 5% 96%;
-  --destructive: 0 62% 50%;
-  --destructive-foreground: 60 5% 96%;
-  --input: 160 20% 20%;
-  --ring: 160 35% 35%;
+  --background: 150 20% 4%;
+  --foreground: 60 10% 98%;
+  --border: 160 25% 22%;
+  --card: 160 35% 12%;
+  --card-foreground: 60 10% 98%;
+  --card-border: 160 30% 28%;
+  --sidebar: 150 20% 3%;
+  --sidebar-foreground: 60 10% 98%;
+  --sidebar-border: 160 20% 18%;
+  --sidebar-primary: 160 45% 40%;
+  --sidebar-primary-foreground: 60 10% 98%;
+  --sidebar-accent: 160 35% 30%;
+  --sidebar-accent-foreground: 60 10% 98%;
+  --sidebar-ring: 160 45% 40%;
+  --popover: 160 35% 10%;
+  --popover-foreground: 60 10% 98%;
+  --popover-border: 160 25% 22%;
+  --primary: 160 50% 38%;
+  --primary-foreground: 150 20% 4%;
+  --secondary: 160 30% 18%;
+  --secondary-foreground: 60 10% 95%;
+  --muted: 160 20% 16%;
+  --muted-foreground: 160 15% 65%;
+  --accent: 160 50% 45%;
+  --accent-foreground: 150 20% 4%;
+  --destructive: 0 70% 55%;
+  --destructive-foreground: 60 10% 98%;
+  --input: 160 25% 25%;
+  --ring: 160 50% 45%;
   --chart-1: 160 35% 35%;
   --chart-2: 160 30% 45%;
   --chart-3: 160 25% 55%;
@@ -186,37 +186,40 @@
   color: #D4AF37;
 }
 
-/* Primary Button Gradient */
+/* Primary Button Gradient - High Contrast */
 .btn-gradient {
-  background: linear-gradient(135deg, #2A5A4B 0%, #3D7A6A 50%, #2A5A4B 100%);
-  border: 1px solid rgba(192, 199, 196, 0.2);
+  background: linear-gradient(135deg, #2E8B6E 0%, #3DA685 50%, #2E8B6E 100%);
+  border: 2px solid rgba(61, 166, 133, 0.5);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(46, 139, 110, 0.3);
 }
 
 .btn-gradient:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(42, 90, 75, 0.4);
+  box-shadow: 0 10px 40px rgba(46, 139, 110, 0.5);
+  border-color: rgba(61, 166, 133, 0.7);
 }
 
-/* Glassmorphism Card */
+/* Glassmorphism Card - More Contrast */
 .glass-card {
-  background: rgba(13, 31, 26, 0.7);
+  background: rgba(20, 50, 42, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(192, 199, 196, 0.15);
-  box-shadow: 0 0 30px rgba(42, 90, 75, 0.2);
+  border: 1px solid rgba(61, 166, 133, 0.25);
+  box-shadow: 0 0 30px rgba(46, 139, 110, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Card Glow Effect */
+/* Card Glow Effect - Stronger */
 .card-glow {
-  border: 1px solid rgba(192, 199, 196, 0.2);
-  box-shadow: 0 0 20px rgba(42, 90, 75, 0.3);
+  border: 1px solid rgba(61, 166, 133, 0.3);
+  box-shadow: 0 0 20px rgba(46, 139, 110, 0.25);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-glow:hover {
   transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-5px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(42, 90, 75, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(46, 139, 110, 0.35);
+  border-color: rgba(61, 166, 133, 0.5);
 }
 
 /* Shimmer Animation */
