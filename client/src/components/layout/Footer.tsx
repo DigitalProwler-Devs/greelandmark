@@ -17,7 +17,7 @@ const legalLinks = [
 
 export function Footer() {
   return (
-    <footer data-testid="footer-main" className="bg-green-street-forest border-t border-green-street-silver/10">
+    <footer data-testid="footer-main" className="bg-green-street-forest border-t border-green-street-silver/10 pb-20 lg:pb-0">
       <div className="container mx-auto px-4 md:px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
@@ -131,9 +131,9 @@ export function Footer() {
         target="_blank"
         rel="noopener noreferrer"
         data-testid="button-whatsapp-float"
-        className="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50 pulse-animation"
+        className="fixed bottom-20 lg:bottom-6 right-4 lg:right-6 w-12 h-12 lg:w-14 lg:h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-40 pulse-animation"
       >
-        <MessageCircle size={28} className="text-white" />
+        <MessageCircle size={24} className="text-white lg:w-7 lg:h-7" />
       </a>
     </footer>
   );

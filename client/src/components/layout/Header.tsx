@@ -17,7 +17,6 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
 
-  // Check if we're on the home page (hero has dark background)
   const isHomePage = location === "/";
 
   useEffect(() => {
@@ -32,27 +31,26 @@ export function Header() {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  // Determine text colors based on scroll state and page
   const showLightText = isHomePage && !isScrolled;
 
   return (
     <header
       data-testid="header-main"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 py-3 shadow-sm"
+          ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 py-2 md:py-3 shadow-sm"
           : showLightText
-          ? "bg-transparent py-5"
-          : "bg-white/95 backdrop-blur-xl border-b border-gray-200 py-3"
+          ? "bg-transparent py-3 md:py-5"
+          : "bg-white/95 backdrop-blur-xl border-b border-gray-200 py-2 md:py-3"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
         <Link href="/" data-testid="link-logo">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-md bg-green-street-money flex items-center justify-center">
-              <span className="text-white font-bold text-lg">GS</span>
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="w-9 h-9 md:w-10 md:h-10 rounded-md bg-green-street-money flex items-center justify-center">
+              <span className="text-white font-bold text-base md:text-lg">GS</span>
             </div>
-            <span className={`text-xl font-bold hidden sm:block transition-colors ${
+            <span className={`text-lg md:text-xl font-bold hidden sm:block transition-colors ${
               showLightText ? "text-white" : "text-gray-900"
             }`}>
               Green Street Capital
@@ -82,13 +80,15 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           <Link href="/apply">
             <Button
               data-testid="button-header-apply"
-              className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold hidden sm:flex"
+              size="sm"
+              className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold text-sm px-4 md:px-6"
             >
-              Check Your Rate
+              <span className="hidden sm:inline">Check Your Rate</span>
+              <span className="sm:hidden">Apply</span>
             </Button>
           </Link>
 
@@ -99,7 +99,7 @@ export function Header() {
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -107,37 +107,53 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-gray-200"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden fixed inset-0 top-[52px] bg-white z-40"
           >
-            <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <Link
+            <nav className="container mx-auto px-4 py-6 flex flex-col gap-1">
+              {navItems.map((item, index) => (
+                <motion.div
                   key={item.href}
-                  href={item.href}
-                  data-testid={`link-mobile-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
                 >
-                  <span
-                    className={`block py-2 text-lg font-medium transition-colors ${
-                      location === item.href
-                        ? "text-green-street-money"
-                        : "text-gray-600"
-                    }`}
+                  <Link
+                    href={item.href}
+                    data-testid={`link-mobile-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   >
-                    {item.label}
-                  </span>
-                </Link>
+                    <div
+                      className={`flex items-center py-4 px-4 rounded-xl transition-colors ${
+                        location === item.href
+                          ? "bg-green-street-money/10 text-green-street-money"
+                          : "text-gray-700 active:bg-gray-100"
+                      }`}
+                    >
+                      <span className="text-lg font-medium">
+                        {item.label}
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
-              <Link href="/apply">
-                <Button
-                  data-testid="button-mobile-apply"
-                  className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold w-full mt-4"
-                >
-                  Check Your Rate
-                </Button>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mt-6"
+              >
+                <Link href="/apply">
+                  <Button
+                    data-testid="button-mobile-apply"
+                    className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold w-full py-6 text-lg rounded-xl"
+                  >
+                    Check Your Rate
+                  </Button>
+                </Link>
+              </motion.div>
             </nav>
           </motion.div>
         )}

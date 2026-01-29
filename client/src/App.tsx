@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileNav } from "@/components/layout/MobileNav";
 import Home from "@/pages/Home";
 import HowItWorks from "@/pages/HowItWorks";
 import Rates from "@/pages/Rates";
@@ -37,6 +38,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <MobileNav />
         </div>
         <Toaster />
       </TooltipProvider>
