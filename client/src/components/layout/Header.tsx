@@ -17,6 +17,9 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
 
+  // Check if we're on the home page (hero has dark background)
+  const isHomePage = location === "/";
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -29,22 +32,29 @@ export function Header() {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Determine text colors based on scroll state and page
+  const showLightText = isHomePage && !isScrolled;
+
   return (
     <header
       data-testid="header-main"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-green-street-forest/95 backdrop-blur-xl border-b border-green-street-silver/10 py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 py-3 shadow-sm"
+          : showLightText
+          ? "bg-transparent py-5"
+          : "bg-white/95 backdrop-blur-xl border-b border-gray-200 py-3"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
         <Link href="/" data-testid="link-logo">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-md bg-gradient-to-br from-green-street-money to-green-street-luxe flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-green-street-money flex items-center justify-center">
               <span className="text-white font-bold text-lg">GS</span>
             </div>
-            <span className="text-xl font-bold text-green-street-offwhite hidden sm:block">
+            <span className={`text-xl font-bold hidden sm:block transition-colors ${
+              showLightText ? "text-white" : "text-gray-900"
+            }`}>
               Green Street Capital
             </span>
           </div>
@@ -58,10 +68,12 @@ export function Header() {
               data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
             >
               <span
-                className={`text-sm font-medium transition-colors link-hover ${
+                className={`text-sm font-medium transition-colors ${
                   location === item.href
-                    ? "text-green-street-luxe"
-                    : "text-green-street-silver hover:text-green-street-offwhite"
+                    ? "text-green-street-money"
+                    : showLightText
+                    ? "text-white/80 hover:text-white"
+                    : "text-gray-600 hover:text-gray-900"
                 }`}
               >
                 {item.label}
@@ -74,7 +86,7 @@ export function Header() {
           <Link href="/apply">
             <Button
               data-testid="button-header-apply"
-              className="btn-gradient text-white font-semibold hidden sm:flex"
+              className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold hidden sm:flex"
             >
               Check Your Rate
             </Button>
@@ -82,7 +94,9 @@ export function Header() {
 
           <button
             data-testid="button-mobile-menu"
-            className="lg:hidden p-2 text-green-street-silver hover:text-green-street-offwhite transition-colors"
+            className={`lg:hidden p-2 transition-colors ${
+              showLightText ? "text-white" : "text-gray-600 hover:text-gray-900"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -96,7 +110,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-green-street-forest/98 backdrop-blur-xl border-t border-green-street-silver/10"
+            className="lg:hidden bg-white border-t border-gray-200"
           >
             <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
               {navItems.map((item) => (
@@ -108,8 +122,8 @@ export function Header() {
                   <span
                     className={`block py-2 text-lg font-medium transition-colors ${
                       location === item.href
-                        ? "text-green-street-luxe"
-                        : "text-green-street-silver"
+                        ? "text-green-street-money"
+                        : "text-gray-600"
                     }`}
                   >
                     {item.label}
@@ -119,7 +133,7 @@ export function Header() {
               <Link href="/apply">
                 <Button
                   data-testid="button-mobile-apply"
-                  className="btn-gradient text-white font-semibold w-full mt-4"
+                  className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold w-full mt-4"
                 >
                   Check Your Rate
                 </Button>

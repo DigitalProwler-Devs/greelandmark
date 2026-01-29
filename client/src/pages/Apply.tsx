@@ -5,7 +5,7 @@ import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { GlassCard } from "@/components/ui/GlassCard";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { 
   Form, 
   FormControl, 
@@ -137,45 +137,45 @@ export default function Apply() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen pt-20 flex items-center justify-center hero-gradient">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center px-4"
-        >
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-street-money to-green-street-luxe flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 size={40} className="text-white" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-green-street-offwhite mb-4">
-            Application Received!
-          </h1>
-          <p className="text-green-street-muted text-lg max-w-md mx-auto mb-8">
-            Thank you for your application. A funding specialist will contact you within 24 hours to discuss your options.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/18001234567" target="_blank" rel="noopener noreferrer">
-              <Button data-testid="button-success-whatsapp" className="btn-gradient text-white font-semibold">
-                Chat on WhatsApp
-              </Button>
-            </a>
-            <a href="/">
-              <Button data-testid="button-success-home" variant="outline" className="border-green-street-silver/30 text-green-street-offwhite hover:bg-green-street-silver/10">
-                Return Home
-              </Button>
-            </a>
-          </div>
-        </motion.div>
+      <div className="min-h-screen pt-20 relative overflow-hidden">
+        <AnimatedBackground variant="light" />
+        <div className="relative z-10 flex items-center justify-center min-h-[80vh]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center px-4"
+          >
+            <div className="w-20 h-20 rounded-full bg-green-street-money flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 size={40} className="text-white" />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Application Received!
+            </h1>
+            <p className="text-gray-600 text-lg max-w-md mx-auto mb-8">
+              Thank you for your application. A funding specialist will contact you within 24 hours to discuss your options.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="https://wa.me/18001234567" target="_blank" rel="noopener noreferrer">
+                <Button data-testid="button-success-whatsapp" className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold">
+                  Chat on WhatsApp
+                </Button>
+              </a>
+              <a href="/">
+                <Button data-testid="button-success-home" variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-100">
+                  Return Home
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen pt-20">
-      <section className="py-12 md:py-20 hero-gradient grain-overlay relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-green-street-money/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-green-street-luxe/10 rounded-full blur-[80px]" />
-        </div>
+      <section className="relative py-12 md:py-20 overflow-hidden">
+        <AnimatedBackground variant="light" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
@@ -184,20 +184,25 @@ export default function Apply() {
             transition={{ duration: 0.8 }}
             className="max-w-xl mx-auto text-center mb-12"
           >
-            <span className="inline-block text-green-street-luxe text-xs font-semibold uppercase tracking-[0.3em] mb-4">
+            <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.3em] mb-4">
               Apply Now
             </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-metallic mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               CHECK YOUR RATE
             </h1>
-            <p className="text-green-street-muted leading-relaxed">
+            <p className="text-gray-600 leading-relaxed">
               Complete our quick application. No credit impact.
             </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="lg:col-span-2">
-              <GlassCard hover={false}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white rounded-xl p-8 shadow-xl border border-gray-100"
+              >
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" data-testid="form-apply">
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -206,8 +211,8 @@ export default function Apply() {
                         name="businessName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <Building2 size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <Building2 size={16} className="text-green-street-money" />
                               Business Name
                             </FormLabel>
                             <FormControl>
@@ -215,7 +220,7 @@ export default function Apply() {
                                 {...field}
                                 data-testid="input-business-name"
                                 placeholder="Your Business Name"
-                                className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite placeholder:text-green-street-muted focus:border-green-street-luxe"
+                                className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-green-street-money focus:ring-green-street-money"
                               />
                             </FormControl>
                             <FormMessage />
@@ -228,8 +233,8 @@ export default function Apply() {
                         name="ownerName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <User size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <User size={16} className="text-green-street-money" />
                               Owner Name
                             </FormLabel>
                             <FormControl>
@@ -237,7 +242,7 @@ export default function Apply() {
                                 {...field}
                                 data-testid="input-owner-name"
                                 placeholder="Your Full Name"
-                                className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite placeholder:text-green-street-muted focus:border-green-street-luxe"
+                                className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-green-street-money focus:ring-green-street-money"
                               />
                             </FormControl>
                             <FormMessage />
@@ -250,8 +255,8 @@ export default function Apply() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <Mail size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <Mail size={16} className="text-green-street-money" />
                               Email Address
                             </FormLabel>
                             <FormControl>
@@ -260,7 +265,7 @@ export default function Apply() {
                                 data-testid="input-email"
                                 type="email"
                                 placeholder="you@business.com"
-                                className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite placeholder:text-green-street-muted focus:border-green-street-luxe"
+                                className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-green-street-money focus:ring-green-street-money"
                               />
                             </FormControl>
                             <FormMessage />
@@ -273,8 +278,8 @@ export default function Apply() {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <Phone size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <Phone size={16} className="text-green-street-money" />
                               Phone Number
                             </FormLabel>
                             <FormControl>
@@ -283,7 +288,7 @@ export default function Apply() {
                                 data-testid="input-phone"
                                 type="tel"
                                 placeholder="(555) 123-4567"
-                                className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite placeholder:text-green-street-muted focus:border-green-street-luxe"
+                                className="bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-green-street-money focus:ring-green-street-money"
                               />
                             </FormControl>
                             <FormMessage />
@@ -296,25 +301,25 @@ export default function Apply() {
                         name="fundingAmount"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <DollarSign size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <DollarSign size={16} className="text-green-street-money" />
                               Funding Amount Needed
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger 
                                   data-testid="select-funding-amount"
-                                  className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite focus:border-green-street-luxe"
+                                  className="bg-gray-50 border-gray-200 text-gray-900 focus:border-green-street-money"
                                 >
                                   <SelectValue placeholder="Select amount" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-green-street-midnight border-green-street-silver/20">
+                              <SelectContent className="bg-white border-gray-200">
                                 {fundingAmounts.map((amount) => (
                                   <SelectItem 
                                     key={amount.value} 
                                     value={amount.value}
-                                    className="text-green-street-offwhite focus:bg-green-street-money/20"
+                                    className="text-gray-900 focus:bg-green-street-money/10"
                                   >
                                     {amount.label}
                                   </SelectItem>
@@ -331,25 +336,25 @@ export default function Apply() {
                         name="monthlyRevenue"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <DollarSign size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <DollarSign size={16} className="text-green-street-money" />
                               Monthly Revenue
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger 
                                   data-testid="select-monthly-revenue"
-                                  className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite focus:border-green-street-luxe"
+                                  className="bg-gray-50 border-gray-200 text-gray-900 focus:border-green-street-money"
                                 >
                                   <SelectValue placeholder="Select revenue" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-green-street-midnight border-green-street-silver/20">
+                              <SelectContent className="bg-white border-gray-200">
                                 {monthlyRevenues.map((revenue) => (
                                   <SelectItem 
                                     key={revenue.value} 
                                     value={revenue.value}
-                                    className="text-green-street-offwhite focus:bg-green-street-money/20"
+                                    className="text-gray-900 focus:bg-green-street-money/10"
                                   >
                                     {revenue.label}
                                   </SelectItem>
@@ -366,25 +371,25 @@ export default function Apply() {
                         name="timeInBusiness"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <Calendar size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <Calendar size={16} className="text-green-street-money" />
                               Time in Business
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger 
                                   data-testid="select-time-in-business"
-                                  className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite focus:border-green-street-luxe"
+                                  className="bg-gray-50 border-gray-200 text-gray-900 focus:border-green-street-money"
                                 >
                                   <SelectValue placeholder="Select duration" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-green-street-midnight border-green-street-silver/20">
+                              <SelectContent className="bg-white border-gray-200">
                                 {timeInBusinessOptions.map((option) => (
                                   <SelectItem 
                                     key={option.value} 
                                     value={option.value}
-                                    className="text-green-street-offwhite focus:bg-green-street-money/20"
+                                    className="text-gray-900 focus:bg-green-street-money/10"
                                   >
                                     {option.label}
                                   </SelectItem>
@@ -401,25 +406,25 @@ export default function Apply() {
                         name="industry"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-green-street-silver text-sm font-medium flex items-center gap-2">
-                              <Building2 size={16} />
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <Building2 size={16} className="text-green-street-money" />
                               Industry
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger 
                                   data-testid="select-industry"
-                                  className="bg-green-street-forest/50 border-green-street-silver/20 text-green-street-offwhite focus:border-green-street-luxe"
+                                  className="bg-gray-50 border-gray-200 text-gray-900 focus:border-green-street-money"
                                 >
                                   <SelectValue placeholder="Select industry" />
                                 </SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-green-street-midnight border-green-street-silver/20">
+                              <SelectContent className="bg-white border-gray-200">
                                 {industries.map((industry) => (
                                   <SelectItem 
                                     key={industry.value} 
                                     value={industry.value}
-                                    className="text-green-street-offwhite focus:bg-green-street-money/20"
+                                    className="text-gray-900 focus:bg-green-street-money/10"
                                   >
                                     {industry.label}
                                   </SelectItem>
@@ -436,7 +441,7 @@ export default function Apply() {
                       type="submit"
                       data-testid="button-submit-application"
                       disabled={applicationMutation.isPending}
-                      className="btn-gradient text-white font-semibold w-full py-6 text-lg"
+                      className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold w-full py-6 text-lg shadow-lg"
                     >
                       {applicationMutation.isPending ? (
                         <>
@@ -451,63 +456,78 @@ export default function Apply() {
                       )}
                     </Button>
 
-                    <p className="text-green-street-muted text-xs text-center">
+                    <p className="text-gray-500 text-xs text-center">
                       By submitting, you agree to our Terms of Service and Privacy Policy. 
                       Checking your rate will not impact your credit score.
                     </p>
                   </form>
                 </Form>
-              </GlassCard>
+              </motion.div>
             </div>
 
             <div className="space-y-6">
-              <GlassCard hover={false}>
-                <h3 className="text-lg font-bold text-green-street-offwhite mb-6">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
+              >
+                <h3 className="text-lg font-bold text-gray-900 mb-6">
                   Why Apply With Us
                 </h3>
                 <div className="space-y-4">
                   {benefits.map((benefit, index) => (
                     <div key={index} className="flex items-center gap-3" data-testid={`benefit-${index}`}>
-                      <div className="w-10 h-10 rounded-lg bg-green-street-money/20 flex items-center justify-center flex-shrink-0">
-                        <benefit.icon size={18} className="text-green-street-luxe" />
+                      <div className="w-10 h-10 rounded-lg bg-green-street-money/10 flex items-center justify-center flex-shrink-0">
+                        <benefit.icon size={18} className="text-green-street-money" />
                       </div>
-                      <span className="text-green-street-offwhite text-sm">
+                      <span className="text-gray-700 text-sm">
                         {benefit.text}
                       </span>
                     </div>
                   ))}
                 </div>
-              </GlassCard>
+              </motion.div>
 
-              <GlassCard hover={false}>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <Shield size={20} className="text-green-street-luxe" />
-                  <h3 className="font-bold text-green-street-offwhite">
+                  <Shield size={20} className="text-green-street-money" />
+                  <h3 className="font-bold text-gray-900">
                     Your Data is Secure
                   </h3>
                 </div>
-                <p className="text-green-street-muted text-sm leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed">
                   We use 256-bit SSL encryption to protect your information. Your data is never sold or shared with third parties.
                 </p>
-              </GlassCard>
+              </motion.div>
 
-              <GlassCard hover={false}>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="bg-green-street-money rounded-xl p-6 shadow-lg"
+              >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-street-offwhite mb-1">
+                  <div className="text-2xl font-bold text-white mb-1">
                     Questions?
                   </div>
-                  <p className="text-green-street-muted text-sm mb-4">
+                  <p className="text-white/80 text-sm mb-4">
                     We're here to help
                   </p>
                   <a 
                     href="tel:+18001234567" 
-                    className="text-green-street-luxe font-semibold hover:underline"
+                    className="text-white font-semibold hover:underline"
                     data-testid="link-phone-sidebar"
                   >
                     (800) 123-4567
                   </a>
                 </div>
-              </GlassCard>
+              </motion.div>
             </div>
           </div>
         </div>

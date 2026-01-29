@@ -2,21 +2,17 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlassCard } from "@/components/ui/GlassCard";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { 
   MessageCircle, 
   Zap, 
-  Clock, 
   Shield, 
   FileText, 
   CheckCircle2, 
   DollarSign,
   ArrowRight,
-  Building2,
-  Users,
   TrendingUp,
-  Timer,
+  Clock,
   Star
 } from "lucide-react";
 
@@ -95,8 +91,10 @@ const testimonials = [
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Luxury Dark with Pattern */}
-      <section className="relative min-h-screen flex items-center justify-center hero-luxury overflow-hidden pt-20">
+      {/* Hero Section - Dark with animated background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <AnimatedBackground variant="hero" />
+        
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -117,14 +115,14 @@ export default function Home() {
             >
               <span className="text-metallic">CAPITAL THAT MOVES</span>
               <br />
-              <span className="text-green-street-offwhite">AS FAST AS YOU DO</span>
+              <span className="text-white">AS FAST AS YOU DO</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="text-lg md:text-xl text-green-street-muted mb-10 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed"
             >
               Merchant cash advances for ambitious businesses. No loans. No hassle. Funded in 24 hours.
             </motion.p>
@@ -139,7 +137,7 @@ export default function Home() {
                 <Button
                   data-testid="button-hero-apply"
                   size="lg"
-                  className="btn-gradient text-white font-semibold px-8 py-6 text-lg"
+                  className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold px-8 py-6 text-lg transition-all shadow-lg shadow-green-street-money/25"
                 >
                   Check Your Rate
                   <ArrowRight className="ml-2" size={20} />
@@ -154,7 +152,7 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-green-street-silver/40 text-green-street-offwhite hover:bg-green-street-silver/10 px-8 py-6 text-lg"
+                  className="border-white/30 text-white hover:bg-white/10 px-8 py-6 text-lg"
                 >
                   <MessageCircle className="mr-2" size={20} />
                   Chat on WhatsApp
@@ -164,12 +162,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5F3EE] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FAFAF8] to-transparent" />
       </section>
 
-      {/* Stats Section - Cream/Off-White */}
-      <section className="py-16 section-cream">
-        <div className="container mx-auto px-4 md:px-6">
+      {/* Stats Section - Light with animated background */}
+      <section className="relative py-20 overflow-hidden">
+        <AnimatedBackground variant="light" />
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -180,10 +180,10 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl md:text-4xl font-bold text-green-street-money mb-1">
+                <div className="text-3xl md:text-5xl font-bold text-green-street-money mb-2">
                   <AnimatedCounter end={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
-                <div className="text-xs uppercase tracking-wider text-muted-on-cream font-medium">
+                <div className="text-xs uppercase tracking-wider text-gray-500 font-medium">
                   {stat.label}
                 </div>
               </motion.div>
@@ -192,79 +192,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works - Dark Section */}
-      <section className="py-20 md:py-32 section-dark">
-        <div className="container mx-auto px-4 md:px-6">
-          <SectionHeading
-            label="How It Works"
-            title="THREE STEPS TO FUNDED"
-            description="Get the capital you need without the hassle. Our streamlined process gets you funded fast."
-          />
+      {/* How It Works - Light Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <AnimatedBackground variant="light" />
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+              How It Works
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              THREE STEPS TO FUNDED
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Get the capital you need without the hassle. Our streamlined process gets you funded fast.
+            </p>
+            <div className="w-16 h-1 bg-green-street-money mx-auto mt-6" />
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {steps.map((step, index) => (
-              <GlassCard key={step.number} delay={index * 0.15}>
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="bg-white rounded-xl p-8 shadow-lg shadow-gray-200/50 border border-gray-100 hover:shadow-xl transition-shadow"
+              >
                 <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-green-street-money to-green-street-luxe mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-street-money mb-6">
                     <step.icon size={28} className="text-white" />
                   </div>
-                  <div className="text-green-street-gold text-sm font-semibold mb-2">
+                  <div className="text-green-street-money text-sm font-semibold mb-2">
                     STEP {step.number}
                   </div>
-                  <h3 className="text-2xl font-bold text-green-street-offwhite mb-3">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-green-street-muted leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed">
                     {step.description}
                   </p>
                 </div>
-              </GlassCard>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Inquiry Section - Cream Background */}
-      <section className="py-20 md:py-32 section-cream">
-        <div className="container mx-auto px-4 md:px-6">
+      {/* Inquiry Section - Light with green accent card */}
+      <section className="relative py-20 md:py-32 overflow-hidden bg-[#F5F3EE]">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.2em] mb-4">
                 Quick Inquiry
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-on-cream mb-4">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                 READY TO MOVE?
               </h2>
-              <p className="text-muted-on-cream text-lg mb-8">
+              <p className="text-gray-600 text-lg mb-8">
                 Skip the wait. Start the conversation. Get a response within minutes.
               </p>
-              <div className="accent-line mb-6" />
-              <div className="flex items-center gap-4 text-muted-on-cream">
+              <div className="w-16 h-1 bg-green-street-money mb-6" />
+              <div className="flex items-center gap-4 text-gray-600">
                 <Clock size={20} className="text-green-street-money" />
                 <span>Response within 30 minutes during business hours</span>
               </div>
             </div>
 
-            <div className="card-on-cream rounded-lg p-8">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-white rounded-xl p-8 shadow-xl border border-gray-100"
+            >
               <form className="space-y-6" data-testid="form-inquiry">
                 <div>
-                  <label className="block text-on-cream text-sm font-medium mb-2">
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
                     Business Name
                   </label>
                   <input
                     type="text"
                     data-testid="input-business-name"
                     placeholder="Your Business Name"
-                    className="w-full px-4 py-3 bg-[#F5F3EE] border border-[#D0CCC4] rounded-md text-on-cream placeholder:text-muted-on-cream focus:outline-none focus:border-green-street-money transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-green-street-money focus:ring-1 focus:ring-green-street-money transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-on-cream text-sm font-medium mb-2">
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
                     Funding Amount Needed
                   </label>
                   <select
                     data-testid="select-funding-amount"
-                    className="w-full px-4 py-3 bg-[#F5F3EE] border border-[#D0CCC4] rounded-md text-on-cream focus:outline-none focus:border-green-street-money transition-colors appearance-none"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:border-green-street-money focus:ring-1 focus:ring-green-street-money transition-colors appearance-none"
                   >
                     <option value="">Select Amount</option>
                     <option value="5000-25000">$5,000 - $25,000</option>
@@ -275,21 +297,22 @@ export default function Home() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-on-cream text-sm font-medium mb-2">
+                  <label className="block text-gray-700 text-sm font-medium mb-2">
                     Phone Number
                   </label>
                   <input
                     type="tel"
                     data-testid="input-phone"
                     placeholder="(555) 123-4567"
-                    className="w-full px-4 py-3 bg-[#F5F3EE] border border-[#D0CCC4] rounded-md text-on-cream placeholder:text-muted-on-cream focus:outline-none focus:border-green-street-money transition-colors"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-green-street-money focus:ring-1 focus:ring-green-street-money transition-colors"
                   />
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
                     type="button"
                     data-testid="button-email-inquiry"
-                    className="flex-1 btn-dark"
+                    variant="outline"
+                    className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-100"
                   >
                     Email Me
                   </Button>
@@ -302,7 +325,7 @@ export default function Home() {
                     <Button
                       type="button"
                       data-testid="button-whatsapp-inquiry"
-                      className="btn-gradient text-white font-semibold w-full"
+                      className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold w-full"
                     >
                       <MessageCircle className="mr-2" size={18} />
                       WhatsApp Now
@@ -310,19 +333,27 @@ export default function Home() {
                   </a>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Benefits - Charcoal Section */}
-      <section className="py-20 md:py-32 section-charcoal">
-        <div className="container mx-auto px-4 md:px-6">
-          <SectionHeading
-            label="Why Choose Us"
-            title="WHY BUSINESSES CHOOSE US"
-            description="We're not a bank. We're your capital partner."
-          />
+      {/* Benefits - Light Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <AnimatedBackground variant="light" />
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+              Why Choose Us
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              WHY BUSINESSES CHOOSE US
+            </h2>
+            <p className="text-gray-600 text-lg">
+              We're not a bank. We're your capital partner.
+            </p>
+          </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => (
@@ -332,16 +363,16 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#252B27] rounded-lg p-6 border border-[#3A423D]"
+                className="bg-white rounded-xl p-6 shadow-lg shadow-gray-200/50 border border-gray-100 hover:shadow-xl transition-shadow"
               >
                 <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-street-money/20 mb-5">
-                    <benefit.icon size={26} className="text-green-street-luxe" />
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-street-money/10 mb-5">
+                    <benefit.icon size={26} className="text-green-street-money" />
                   </div>
-                  <h3 className="text-lg font-bold text-green-street-offwhite mb-2">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {benefit.title}
                   </h3>
-                  <p className="text-green-street-muted text-sm leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {benefit.description}
                   </p>
                 </div>
@@ -351,14 +382,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials - Cream Section */}
-      <section className="py-20 md:py-32 section-cream">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
+      {/* Testimonials - Slight gray background */}
+      <section className="relative py-20 md:py-32 bg-[#F5F3EE]">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
             <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.2em] mb-4">
               Testimonials
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-on-cream">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
               REAL BUSINESSES. REAL RESULTS.
             </h2>
           </div>
@@ -371,7 +402,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="card-on-cream rounded-lg p-6"
+                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100"
               >
                 <div className="flex flex-col h-full">
                   <div className="flex gap-1 mb-4">
@@ -379,14 +410,14 @@ export default function Home() {
                       <Star key={i} size={18} className="text-green-street-gold fill-green-street-gold" />
                     ))}
                   </div>
-                  <blockquote className="text-on-cream text-lg leading-relaxed mb-6 flex-grow">
+                  <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 flex-grow">
                     "{testimonial.quote}"
                   </blockquote>
                   <div>
-                    <div className="font-semibold text-on-cream">
+                    <div className="font-semibold text-gray-900">
                       {testimonial.name}
                     </div>
-                    <div className="text-muted-on-cream text-sm">
+                    <div className="text-gray-500 text-sm">
                       {testimonial.role} • {testimonial.location}
                     </div>
                   </div>
@@ -397,37 +428,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Badges - Dark Section */}
-      <section className="py-12 section-dark border-y border-green-street-silver/10">
+      {/* Trust Badges - White section */}
+      <section className="py-12 bg-white border-y border-gray-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
             <div className="text-center">
-              <div className="text-green-street-silver text-sm font-medium mb-1">BBB Accredited</div>
-              <div className="text-green-street-muted text-xs">A+ Rating</div>
+              <div className="text-gray-700 text-sm font-medium mb-1">BBB Accredited</div>
+              <div className="text-gray-500 text-xs">A+ Rating</div>
             </div>
-            <div className="w-px h-8 bg-green-street-silver/20 hidden md:block" />
+            <div className="w-px h-8 bg-gray-200 hidden md:block" />
             <div className="text-center">
-              <div className="text-green-street-silver text-sm font-medium mb-1">SBFA Member</div>
-              <div className="text-green-street-muted text-xs">Certified</div>
+              <div className="text-gray-700 text-sm font-medium mb-1">SBFA Member</div>
+              <div className="text-gray-500 text-xs">Certified</div>
             </div>
-            <div className="w-px h-8 bg-green-street-silver/20 hidden md:block" />
+            <div className="w-px h-8 bg-gray-200 hidden md:block" />
             <div className="text-center">
-              <div className="text-green-street-silver text-sm font-medium mb-1">Trustpilot</div>
-              <div className="text-green-street-muted text-xs">4.8/5 Rating</div>
+              <div className="text-gray-700 text-sm font-medium mb-1">Trustpilot</div>
+              <div className="text-gray-500 text-xs">4.8/5 Rating</div>
             </div>
-            <div className="w-px h-8 bg-green-street-silver/20 hidden md:block" />
+            <div className="w-px h-8 bg-gray-200 hidden md:block" />
             <div className="text-center">
-              <div className="text-green-street-silver text-sm font-medium mb-1">256-bit SSL</div>
-              <div className="text-green-street-muted text-xs">Bank-Level Security</div>
+              <div className="text-gray-700 text-sm font-medium mb-1">256-bit SSL</div>
+              <div className="text-gray-500 text-xs">Bank-Level Security</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Green Gradient */}
-      <section className="py-20 md:py-32 section-green relative overflow-hidden">
+      {/* CTA Section - Forest Green */}
+      <section className="py-20 md:py-32 bg-green-street-money relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-street-money/10 rounded-full blur-[150px]" />
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </div>
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -438,18 +482,17 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-street-offwhite mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
               YOUR NEXT CHAPTER STARTS HERE
             </h2>
-            <div className="divider-gold mx-auto w-32 mb-6" />
-            <p className="text-green-street-muted text-lg mb-10">
+            <p className="text-white/80 text-lg mb-10">
               The capital you need. The speed you deserve.
             </p>
             <Link href="/apply">
               <Button
                 data-testid="button-cta-apply"
                 size="lg"
-                className="btn-gradient text-white font-semibold px-10 py-6 text-lg"
+                className="bg-white text-green-street-money hover:bg-gray-100 font-semibold px-10 py-6 text-lg shadow-lg"
               >
                 Get Started Now
                 <ArrowRight className="ml-2" size={20} />

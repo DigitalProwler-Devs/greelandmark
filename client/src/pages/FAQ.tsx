@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { 
   Accordion,
   AccordionContent,
@@ -134,11 +134,9 @@ const faqCategories = [
 export default function FAQ() {
   return (
     <div className="min-h-screen pt-20">
-      <section className="py-20 md:py-32 hero-gradient grain-overlay relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-green-street-money/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-green-street-luxe/10 rounded-full blur-[80px]" />
-        </div>
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <AnimatedBackground variant="light" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
@@ -147,20 +145,22 @@ export default function FAQ() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-block text-green-street-luxe text-xs font-semibold uppercase tracking-[0.3em] mb-6">
+            <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.3em] mb-6">
               FAQ
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-metallic mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               QUESTIONS? WE'VE GOT ANSWERS.
             </h1>
-            <p className="text-lg md:text-xl text-green-street-muted leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
               Everything you need to know about merchant cash advances and working with Green Street Capital.
             </p>
+            <div className="w-16 h-1 bg-green-street-money mx-auto mt-8" />
           </motion.div>
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-green-street-forest">
+      {/* FAQ Section */}
+      <section className="py-20 md:py-32 bg-[#F5F3EE]">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto">
             {faqCategories.map((category, categoryIndex) => (
@@ -172,8 +172,8 @@ export default function FAQ() {
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                 className="mb-12"
               >
-                <h2 className="text-2xl font-bold text-green-street-offwhite mb-6 flex items-center gap-3">
-                  <div className="w-1 h-8 bg-gradient-to-b from-green-street-money to-green-street-luxe rounded-full" />
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                  <div className="w-1 h-8 bg-green-street-money rounded-full" />
                   {category.name}
                 </h2>
                 
@@ -182,15 +182,15 @@ export default function FAQ() {
                     <AccordionItem
                       key={faqIndex}
                       value={`${category.name}-${faqIndex}`}
-                      className="glass-card rounded-lg border-green-street-silver/10 px-6 overflow-hidden"
+                      className="bg-white rounded-lg border border-gray-100 px-6 overflow-hidden shadow-sm"
                     >
                       <AccordionTrigger 
-                        className="text-left text-green-street-offwhite hover:text-green-street-luxe py-5 text-base font-medium [&[data-state=open]>svg]:text-green-street-luxe"
+                        className="text-left text-gray-900 hover:text-green-street-money py-5 text-base font-medium [&[data-state=open]>svg]:text-green-street-money"
                         data-testid={`accordion-${category.name.toLowerCase()}-${faqIndex}`}
                       >
                         {faq.question}
                       </AccordionTrigger>
-                      <AccordionContent className="text-green-street-muted leading-relaxed pb-5">
+                      <AccordionContent className="text-gray-600 leading-relaxed pb-5">
                         {faq.answer}
                       </AccordionContent>
                     </AccordionItem>
@@ -202,12 +202,19 @@ export default function FAQ() {
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-green-street-midnight">
-        <div className="container mx-auto px-4 md:px-6">
-          <SectionHeading
-            title="CAN'T FIND YOUR ANSWER?"
-            description="Our team is here to help. Reach out anytime."
-          />
+      {/* Contact Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <AnimatedBackground variant="light" />
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              CAN'T FIND YOUR ANSWER?
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Our team is here to help. Reach out anytime.
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
             <a
@@ -219,7 +226,7 @@ export default function FAQ() {
               <Button
                 data-testid="button-faq-whatsapp"
                 size="lg"
-                className="btn-gradient text-white font-semibold w-full"
+                className="bg-green-street-money hover:bg-green-street-luxe text-white font-semibold w-full"
               >
                 <MessageCircle className="mr-2" size={20} />
                 Chat on WhatsApp
@@ -233,7 +240,7 @@ export default function FAQ() {
                 data-testid="button-faq-email"
                 size="lg"
                 variant="outline"
-                className="border-green-street-silver/30 text-green-street-offwhite hover:bg-green-street-silver/10 w-full"
+                className="border-gray-300 text-gray-700 hover:bg-gray-100 w-full"
               >
                 <Mail className="mr-2" size={20} />
                 Email Us
@@ -243,9 +250,23 @@ export default function FAQ() {
         </div>
       </section>
 
-      <section className="py-20 md:py-32 bg-green-street-forest relative overflow-hidden">
+      {/* CTA Section */}
+      <section className="py-20 md:py-32 bg-green-street-money relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-street-money/5 rounded-full blur-[120px]" />
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)",
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </div>
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -255,17 +276,17 @@ export default function FAQ() {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-green-street-offwhite mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               READY TO GET STARTED?
             </h2>
-            <p className="text-green-street-muted text-lg mb-10">
+            <p className="text-white/80 text-lg mb-10">
               Check your rate in minutes. No credit impact.
             </p>
             <Link href="/apply">
               <Button
                 data-testid="button-cta-apply"
                 size="lg"
-                className="btn-gradient text-white font-semibold px-10 py-6 text-lg"
+                className="bg-white text-green-street-money hover:bg-gray-100 font-semibold px-10 py-6 text-lg shadow-lg"
               >
                 Apply Now
                 <ArrowRight className="ml-2" size={20} />
