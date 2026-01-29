@@ -338,21 +338,151 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits - Light Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <AnimatedBackground variant="light" />
+      {/* Benefits - Dark Interactive Section */}
+      <section className="relative py-24 md:py-36 overflow-hidden">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1510] via-[#0D1812] to-[#0A1510]" />
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        {/* Fade gradient at top for smooth transition */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#F5F3EE] to-transparent z-10" />
+        
+        {/* Animated geometric shapes */}
+        <motion.div
+          className="absolute top-1/4 left-[10%] w-64 h-64"
+          animate={{
+            rotate: [0, 360],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: { duration: 30, repeat: Infinity, ease: "linear" },
+            scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+          }}
+        >
+          <div className="w-full h-full rounded-full border border-green-street-money/20" />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-1/4 right-[15%] w-48 h-48"
+          animate={{
+            rotate: [360, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            rotate: { duration: 25, repeat: Infinity, ease: "linear" },
+            scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+          }}
+        >
+          <div className="w-full h-full rounded-full border border-green-street-luxe/15" />
+        </motion.div>
+        
+        {/* Floating diamond shapes */}
+        <motion.div
+          className="absolute top-1/3 right-[25%] w-16 h-16 border border-green-street-money/25"
+          style={{ transform: "rotate(45deg)" }}
+          animate={{
+            y: [0, -40, 0],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 left-[20%] w-12 h-12 border border-green-street-luxe/20"
+          style={{ transform: "rotate(45deg)" }}
+          animate={{
+            y: [0, 30, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        
+        {/* Glowing orbs */}
+        <motion.div
+          className="absolute top-1/2 left-1/4 w-[350px] h-[350px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)",
+          }}
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-[280px] h-[280px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(52,211,153,0.1) 0%, transparent 70%)",
+          }}
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        
+        {/* Horizontal moving line */}
+        <motion.div
+          className="absolute top-1/2 left-0 w-1/3 h-px"
+          style={{
+            background: "linear-gradient(90deg, transparent, rgba(16,185,129,0.4), transparent)",
+          }}
+          animate={{
+            x: ["0%", "200%"],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        
+        {/* Fade gradient at bottom for smooth transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5F3EE] to-transparent z-10" />
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-20">
           <div className="text-center mb-16">
-            <span className="inline-block text-green-street-money text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-block text-green-street-luxe text-xs font-semibold uppercase tracking-[0.2em] mb-4"
+            >
               Why Choose Us
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
+            >
               WHY BUSINESSES CHOOSE US
-            </h2>
-            <p className="text-gray-600 text-lg">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-gray-400 text-lg"
+            >
               We're not a bank. We're your capital partner.
-            </p>
+            </motion.p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -363,16 +493,16 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg shadow-gray-200/50 border border-gray-100 hover:shadow-xl transition-shadow"
+                className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/10 transition-all hover:border-green-street-money/30"
               >
                 <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-street-money/10 mb-5">
-                    <benefit.icon size={26} className="text-green-street-money" />
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-street-money/20 mb-5">
+                    <benefit.icon size={26} className="text-green-street-luxe" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <h3 className="text-lg font-bold text-white mb-2">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-gray-400 text-sm leading-relaxed">
                     {benefit.description}
                   </p>
                 </div>
