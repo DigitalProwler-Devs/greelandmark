@@ -18,8 +18,8 @@ export default {
         "green-street": {
           "forest": "#0B0F0D",
           "midnight": "#1A1F1C",
-          "money": "#2E8B6E",
-          "luxe": "#3DA685",
+          "money": "#10B981",
+          "luxe": "#34D399",
           "silver": "#D0D7D4",
           "gold": "#D4AF37",
           "offwhite": "#F5F3EE",

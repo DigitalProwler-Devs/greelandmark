@@ -15,7 +15,7 @@ export function AnimatedBackground({ variant = "light" }: AnimatedBackgroundProp
         <motion.div
           className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(46,139,110,0.15) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%)",
           }}
           animate={{
             x: [0, 50, 0],
@@ -31,7 +31,7 @@ export function AnimatedBackground({ variant = "light" }: AnimatedBackgroundProp
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(61,166,133,0.12) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(52,211,153,0.12) 0%, transparent 70%)",
           }}
           animate={{
             x: [0, -40, 0],
@@ -115,7 +115,7 @@ export function AnimatedBackground({ variant = "light" }: AnimatedBackgroundProp
       <motion.div
         className="absolute top-20 left-[10%] w-64 h-64 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(46,139,110,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)",
         }}
         animate={{
           y: [0, -30, 0],
@@ -130,7 +130,7 @@ export function AnimatedBackground({ variant = "light" }: AnimatedBackgroundProp
       <motion.div
         className="absolute top-1/3 right-[15%] w-48 h-48 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(61,166,133,0.05) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(52,211,153,0.05) 0%, transparent 70%)",
         }}
         animate={{
           y: [0, 25, 0],
@@ -145,7 +145,7 @@ export function AnimatedBackground({ variant = "light" }: AnimatedBackgroundProp
       <motion.div
         className="absolute bottom-1/4 left-[20%] w-56 h-56 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(46,139,110,0.04) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 70%)",
         }}
         animate={{
           y: [0, -20, 0],
@@ -188,7 +188,7 @@ export function AnimatedBackground({ variant = "light" }: AnimatedBackgroundProp
       <div 
         className="absolute inset-0 opacity-[0.4]"
         style={{
-          backgroundImage: `radial-gradient(circle, rgba(46,139,110,0.08) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, rgba(16,185,129,0.08) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />

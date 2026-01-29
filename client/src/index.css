@@ -43,8 +43,8 @@
   --popover-foreground: 45 20% 95%;
   --popover-border: 160 25% 22%;
 
-  /* Primary - Rich Green */
-  --primary: 160 55% 40%;
+  /* Primary - Emerald Green */
+  --primary: 160 84% 39%;
   --primary-foreground: 160 15% 6%;
 
   /* Secondary */
@@ -55,8 +55,8 @@
   --muted: 160 15% 15%;
   --muted-foreground: 160 10% 55%;
 
-  /* Accent - Bright Green */
-  --accent: 160 60% 45%;
+  /* Accent - Emerald Green */
+  --accent: 160 77% 52%;
   --accent-foreground: 160 15% 6%;
 
   /* Destructive */
