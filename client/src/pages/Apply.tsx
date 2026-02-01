@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { 
   Form, 
@@ -12,9 +12,11 @@ import {
   FormField, 
   FormItem, 
   FormLabel, 
-  FormMessage 
+  FormMessage,
+  FormDescription
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { 
   Select,
   SelectContent,
@@ -37,12 +39,19 @@ import {
   Mail,
   DollarSign,
   Calendar,
-  Loader2
+  Loader2,
+  Upload,
+  FileText,
+  X,
+  AlertCircle
 } from "lucide-react";
 
 const applyFormSchema = insertApplicationSchema.extend({
   email: z.string().email("Valid email is required"),
   phone: z.string().min(10, "Valid phone number is required"),
+  hasExistingDebt: z.enum(["yes", "no", ""]).optional(),
+  numberOfPositions: z.string().optional(),
+  totalBorrowed: z.string().optional(),
 });
 
 type ApplyFormData = z.infer<typeof applyFormSchema>;
@@ -91,8 +100,25 @@ const industries = [
   { value: "other", label: "Other" },
 ];
 
+const positionOptions = [
+  { value: "1", label: "1 position" },
+  { value: "2", label: "2 positions" },
+  { value: "3", label: "3 positions" },
+  { value: "4", label: "4 positions" },
+  { value: "5+", label: "5 or more positions" },
+];
+
+const totalBorrowedOptions = [
+  { value: "0-25000", label: "Less than $25,000" },
+  { value: "25000-50000", label: "$25,000 - $50,000" },
+  { value: "50000-100000", label: "$50,000 - $100,000" },
+  { value: "100000-200000", label: "$100,000 - $200,000" },
+  { value: "200000+", label: "$200,000+" },
+];
+
 export default function Apply() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [bankStatements, setBankStatements] = useState<File[]>([]);
   const { toast } = useToast();
 
   const form = useForm<ApplyFormData>({
@@ -106,8 +132,28 @@ export default function Apply() {
       monthlyRevenue: "",
       timeInBusiness: "",
       industry: "",
+      hasExistingDebt: "",
+      numberOfPositions: "",
+      totalBorrowed: "",
     },
   });
+
+  const hasExistingDebt = useWatch({
+    control: form.control,
+    name: "hasExistingDebt",
+  });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const newFiles = Array.from(files);
+      setBankStatements(prev => [...prev, ...newFiles].slice(0, 4));
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setBankStatements(prev => prev.filter((_, i) => i !== index));
+  };
 
   const applicationMutation = useMutation({
     mutationFn: async (data: ApplyFormData) => {
@@ -435,6 +481,190 @@ export default function Apply() {
                           </FormItem>
                         )}
                       />
+                    </div>
+
+                    {/* Bank Statements Upload - Optional */}
+                    <div className="border-t border-gray-100 pt-6">
+                      <div className="space-y-4">
+                        <div>
+                          <Label className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                            <Upload size={16} className="text-green-street-money" />
+                            Bank Statements (Optional)
+                          </Label>
+                          <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+                            <Clock size={12} />
+                            Upload your last 4 months of statements to speed up the approval process
+                          </p>
+                        </div>
+                        
+                        <div className="border-2 border-dashed border-gray-200 rounded-lg p-4 hover:border-green-street-money/50 transition-colors">
+                          <input
+                            type="file"
+                            id="bankStatements"
+                            data-testid="input-bank-statements"
+                            accept=".pdf,.png,.jpg,.jpeg"
+                            multiple
+                            onChange={handleFileChange}
+                            className="hidden"
+                          />
+                          <label 
+                            htmlFor="bankStatements" 
+                            className="flex flex-col items-center justify-center cursor-pointer py-4"
+                          >
+                            <Upload size={24} className="text-gray-400 mb-2" />
+                            <span className="text-sm text-gray-600">
+                              Click to upload or drag and drop
+                            </span>
+                            <span className="text-xs text-gray-400 mt-1">
+                              PDF, PNG, or JPG (up to 4 files)
+                            </span>
+                          </label>
+                        </div>
+
+                        {bankStatements.length > 0 && (
+                          <div className="space-y-2">
+                            {bankStatements.map((file, index) => (
+                              <div 
+                                key={index}
+                                className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2"
+                                data-testid={`file-item-${index}`}
+                              >
+                                <div className="flex items-center gap-2">
+                                  <FileText size={16} className="text-green-street-money" />
+                                  <span className="text-sm text-gray-700 truncate max-w-[200px]">
+                                    {file.name}
+                                  </span>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => removeFile(index)}
+                                  className="text-gray-400 hover:text-red-500 transition-colors"
+                                  data-testid={`button-remove-file-${index}`}
+                                >
+                                  <X size={16} />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Existing Debt Section */}
+                    <div className="border-t border-gray-100 pt-6">
+                      <FormField
+                        control={form.control}
+                        name="hasExistingDebt"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-gray-700 text-sm font-medium flex items-center gap-2">
+                              <AlertCircle size={16} className="text-green-street-money" />
+                              Do you have any existing MCA positions or business loans?
+                            </FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger 
+                                  data-testid="select-has-existing-debt"
+                                  className="bg-gray-50 border-gray-200 text-gray-900 focus:border-green-street-money"
+                                >
+                                  <SelectValue placeholder="Select an option" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent className="bg-white border-gray-200">
+                                <SelectItem value="no" className="text-gray-900 focus:bg-green-street-money/10">
+                                  No, I don't have any existing positions
+                                </SelectItem>
+                                <SelectItem value="yes" className="text-gray-900 focus:bg-green-street-money/10">
+                                  Yes, I have existing positions
+                                </SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <AnimatePresence>
+                        {hasExistingDebt === "yes" && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="grid sm:grid-cols-2 gap-6 mt-6 p-4 bg-amber-50 rounded-lg border border-amber-100">
+                              <FormField
+                                control={form.control}
+                                name="numberOfPositions"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-gray-700 text-sm font-medium">
+                                      How many positions do you have?
+                                    </FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                      <FormControl>
+                                        <SelectTrigger 
+                                          data-testid="select-number-of-positions"
+                                          className="bg-white border-gray-200 text-gray-900 focus:border-green-street-money"
+                                        >
+                                          <SelectValue placeholder="Select number" />
+                                        </SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent className="bg-white border-gray-200">
+                                        {positionOptions.map((option) => (
+                                          <SelectItem 
+                                            key={option.value} 
+                                            value={option.value}
+                                            className="text-gray-900 focus:bg-green-street-money/10"
+                                          >
+                                            {option.label}
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+
+                              <FormField
+                                control={form.control}
+                                name="totalBorrowed"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel className="text-gray-700 text-sm font-medium">
+                                      Total amount currently borrowed?
+                                    </FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                      <FormControl>
+                                        <SelectTrigger 
+                                          data-testid="select-total-borrowed"
+                                          className="bg-white border-gray-200 text-gray-900 focus:border-green-street-money"
+                                        >
+                                          <SelectValue placeholder="Select amount" />
+                                        </SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent className="bg-white border-gray-200">
+                                        {totalBorrowedOptions.map((option) => (
+                                          <SelectItem 
+                                            key={option.value} 
+                                            value={option.value}
+                                            className="text-gray-900 focus:bg-green-street-money/10"
+                                          >
+                                            {option.label}
+                                          </SelectItem>
+                                        ))}
+                                      </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
 
                     <Button
