@@ -66,12 +66,6 @@ export function Footer() {
               Contact
             </h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-green-street-luxe flex-shrink-0 mt-0.5" />
-                <span className="text-green-street-muted text-sm">
-                  480 NE 31st Street<br />Miami, FL 33173
-                </span>
-              </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-green-street-luxe flex-shrink-0" />
                 <a
